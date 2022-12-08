@@ -1,0 +1,27 @@
+const Track = (props) => {
+    return(
+        <tr>
+            <td>
+                {props.show}
+            </td>
+            <td>
+                {props.played}
+            </td>
+            <td>
+                {props.ended}
+            </td>
+            <td>
+                {props.title}
+            </td>
+            <td>
+                {props.album}
+            </td>
+            <td>
+                {props.artist}
+            </td>
+            <tr>
+                {props.label}
+            </tr>
+        </tr>
+    )
+}
