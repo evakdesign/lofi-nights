@@ -1,11 +1,13 @@
 const { Model, DataTypes } = require("sequelize");
+const { Song } = require(".");
 
 const sequelize = require("../config/connection");
-const Album = require("./album");
+const Artist = require("./artist");
+const Song = require("./Song");
 
-class Label extends model {}
+class songArtist extends model {}
 
-Label.init(
+songArtist.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -13,7 +15,7 @@ Label.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    labelName: {
+    songArtist_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -22,10 +24,11 @@ Label.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "label",
+    modelName: "songArtist",
   }
 );
 
-Label.hasMany(Album);
+songArtist.hasMany(Artist);
+songArtist.hasMany(Song);
 
-module.exports = Label;
+module.exports = songArtist;

@@ -1,6 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 
 const sequelize = require("../config/connection");
+const songAlbum = require("./song-album");
+const songArtist = require("./song-artist");
+const Track = require("./Track");
 
 class Artist extends model {}
 
@@ -12,7 +15,7 @@ Artist.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    artist_name: {
+    artistName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -24,5 +27,8 @@ Artist.init(
     modelName: "artist",
   }
 );
+
+
+Artist.belongsToMany(songArtist);
 
 module.exports = Artist;

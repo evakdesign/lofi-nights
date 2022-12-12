@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
+const { Song, Episode } = require(".");
 
 const sequelize = require("../config/connection");
 
@@ -12,7 +13,19 @@ Track.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    label_name: {
+    trackID: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    songID: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    timeStarted: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    timeEnded: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -24,5 +37,8 @@ Track.init(
     modelName: "track",
   }
 );
+
+Track.belongsTo(Song);
+Track.belongsToMany(Episode);
 
 module.exports = Track;
