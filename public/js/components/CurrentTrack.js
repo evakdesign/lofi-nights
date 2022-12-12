@@ -1,0 +1,53 @@
+const CurrentTrack = () => {
+    const showContext = React.useContext(ShowContext);
+    //local state
+    const [trackState, setTrackState] = React.useState({isplaying:false});
+    const trackRef = React.useRef(null);
+    //This function checks if there are tracks in the show context queue if there are play the audio if not then say no more tracks in playlist.
+    const renderCurrentTrack = () => {
+        if(showContext.show.trackQueue.length > 0) {
+            return(
+                <audio ref = {trackRef} onPlaying = {handleCurrentTrackStart} onEnded = {handleCurrentTrackEnd} controls = {true} src= {showContext.show.trackQueue[0].src}>
+                </audio>)
+        } else {
+            return(
+                <div>
+                    <p>
+                        No more tracks in playlist.
+                    </p>
+                </div>)
+        }
+    };
+    //If the track is playing in the local state then return
+    const handleCurrentTrackStart = () => {
+        if (trackState.isplaying) {
+            return; 
+        }
+        //set the played property to the current time(datePlayed)
+        const datePlayed = Date.now();
+        //created a helper variable
+        const currentPlaylist = showContext.show.playlists[0];
+        //created another helper variable
+        const topQueueTrack = showContext.show.trackQueue[0];
+        //This updates the played key in the topQueueTrack, the spread operator copies over the rest. 
+        const startedTrack = {...topQueueTrack, played:datePlayed}
+         // console.log(showContext), displays the data structure;
+         console.log({...showContext.show});
+         //This updates the show with an updated version similar to line 32.
+         showContext.setShow({...showContext.show, trackQueue:[{...topQueueTrack, played: datePlayed}, ...showContext.show.trackQueue.slice(1)], playlists:[{...currentPlaylist, tracks:[startedTrack, ...currentPlaylist.tracks]}]})
+         setTrackState({isplaying: true})
+        }
+    const handleCurrentTrackEnd = () => {
+       const currentPlaylist = showContext.show.playlists[0];
+       const finishedTrack = {...showContext.show.trackQueue[0], ended:Date.now()}
+        // console.log(showContext);
+        console.log({...showContext.show});
+        showContext.setShow({...showContext.show, trackQueue:showContext.show.trackQueue.slice(1), playlists:[{...currentPlaylist, tracks:[finishedTrack, ...currentPlaylist.tracks.slice(1)]}]})
+        setTrackState({isplaying: false})
+    }
+    return(
+        <div>
+           {renderCurrentTrack()} 
+        </div>
+    )
+}

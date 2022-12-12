@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Kolligio.ttf';
+    src: url(./fonts/Kolligio.ttf) format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+body{
+    background-color: black;
+    color: white;
+}
+
+audio::-webkit-media-controls-panel{
+    background-color: blueviolet;
+}
+
+.header {
+    font-family: 'Kolligio';
+    display: flex;
+    font-size: 64px;
+    justify-content: space-between;
+}
+.button {
+    background-color: blueviolet;
+    color: white;
+}
+
+
+
+
+
+
