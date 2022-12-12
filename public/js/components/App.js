@@ -3,7 +3,6 @@ const App = () => {
     //The app is setting state for holding authentication data and show data. The app is now in charge for maintaining that information.
     const [auth, setAuth] = React.useState(null)
     const [show, setShow] = React.useState(shows[0])
-    const appname = "Nocturne"
     const getData = () => {
         setData(Date.now());
     }
@@ -19,7 +18,6 @@ const App = () => {
                 <div className = "test">
                     <Header/>
                     <Searchbar/>
-                    <h1>{appname}</h1>
                     <button className = "button" onClick = {getData}>Get Songs</button>
                     <p>{data}</p>
                     <CurrentTrack/>
