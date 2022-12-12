@@ -1,6 +1,7 @@
 const express = require("express");
 const handlebars = require("express-handlebars");
 const path = require("node:path");
+const sequilize = require("./config/connection");
 const PORT = process.env.PORT || 3001;
 
 const app = express();
@@ -18,6 +19,8 @@ app.get("/home",(req, res) => {
     res.render("home")
 });
 
-app.listen(PORT, () => {
-    console.log("server is listening");
-})
+sequilize.sync().then(() => {
+    app.listen(PORT, () => {
+        console.log("server is listening");
+    });
+});

@@ -1,5 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const Shows = require('./shows');
+const Track = require('./track');
+
+
 
 class Episode extends Model {}
  Episode.init(
@@ -9,8 +13,12 @@ class Episode extends Model {}
     primaryKey: true,
     autoIncrement: true,
     },
-    playlist: {
-      type: DataTypes.STRING,
+    trackId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    showId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     }
   },
@@ -21,5 +29,6 @@ class Episode extends Model {}
     modelName: 'episode'
   }
 );
-
+Episode.belongsTo(Shows);
+Episode.hasMany(Track);
 module.exports = Episode;

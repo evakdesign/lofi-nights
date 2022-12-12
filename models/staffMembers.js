@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-
+const Role = require('./role');
+const StaffMemberWithShows = require('./staffMembersWithShows');
 
 class StaffMember extends Model {}
 
@@ -58,5 +59,6 @@ StaffMember.init(
     modelName: 'staffMembers'
   }
 );
-
+StaffMember.belongsToMany(Role);
+StaffMember.hasMany(StaffMemberWithShows);
 module.exports = StaffMember;

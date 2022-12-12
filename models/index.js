@@ -7,6 +7,7 @@ const Role = require('./Role');
 const Shows = require('./Shows');
 const Station = require('./station');
 const Staff = require('./staffMembers');
-const Track = require('./Track');
+const Track = require('./track');
+const StaffMemberWithShows = require('./staffMembersWithShows');
 
-module.exports = { Album, Artist, Episode, Label, Playlist, Role, Shows, Station, Staff, Track};
+module.exports = { Album, Artist, Episode, Label, Playlist, Role, Shows, Station, Staff, Track, StaffMemberWithShows};

@@ -1,5 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const Role = require('./role');
+const Shows = require('./shows');
 
 class Station extends Model {}
 
@@ -14,14 +16,6 @@ Station.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    rolesID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    showsID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    }
   },
   {
     sequelize,
@@ -30,6 +24,7 @@ Station.init(
     modelName: 'station'
   }
 );
-
+Station.hasMany(Shows);
+Station.hasMany(Role);
 module.exports = Station;
 

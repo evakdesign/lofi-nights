@@ -1,5 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const Station = require('./station');
+const StaffMember = require('./staffMembers');
+
 
 class Role extends Model {}
 
@@ -13,7 +16,11 @@ Role.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
+    stationId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     sequelize,
@@ -22,5 +29,6 @@ Role.init(
     modelName: 'role'
   }
 );
-
+Role.belongsTo(Station);
+Role.hasMany(StaffMember);
 module.exports = Role;
