@@ -1,11 +1,13 @@
 // const { Model, DataTypes } = require("sequelize");
 
 // const sequelize = require("../config/connection");
-// const Album = require("./album");
+// const songAlbum = require("./song-album");
+// const songArtist = require("./song-artist");
+// const Track = require("./Track");
 
-// class Label extends model {}
+// class Song extends model {}
 
-// Label.init(
+// Song.init(
 //   {
 //     id: {
 //       type: DataTypes.INTEGER,
@@ -13,7 +15,11 @@
 //       primaryKey: true,
 //       autoIncrement: true,
 //     },
-//     labelName: {
+//     songID: {
+//       type: DataTypes.STRING,
+//       allowNull: false,
+//     },
+//     name: {
 //       type: DataTypes.STRING,
 //       allowNull: false,
 //     },
@@ -22,10 +28,12 @@
 //     sequelize,
 //     freezeTableName: true,
 //     underscored: true,
-//     modelName: "label",
+//     modelName: "Song",
 //   }
 // );
 
-// Label.hasMany(Album);
+// Song.belongsTo(Track);
+// Song.belongsTo(songAlbum);
+// Song.belongsTo(songArtist);
 
-// module.exports = Label;
+// module.exports = Song;
