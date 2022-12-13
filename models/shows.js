@@ -1,9 +1,9 @@
 const { Model, DataTypes, DATE } = require('sequelize');
 const sequelize = require('../config/connection');
-const Episode = require('./episode');
+//const Episode = require('./episode');
 const StaffMemberWithShows = require('./staffMembersWithShows');
 const Station = require('./station');
-
+const Track = require('./track')
 
 class Shows extends Model {}
 
@@ -22,6 +22,10 @@ Shows.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    sationId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      },
     timeStarted: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -38,7 +42,8 @@ Shows.init(
     modelName: 'shows'
   }
 );
-Shows.hasMany(Episode);
+// Shows.hasMany(Episode);
+Shows.belongsToMany(Track);
 Shows.belongsTo(Station);
 Shows.belongsToMany(StaffMemberWithShows);
 module.exports = Shows;

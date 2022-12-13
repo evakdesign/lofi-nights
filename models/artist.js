@@ -1,28 +1,28 @@
-const { Model, DataTypes } = require("sequelize");
+// const { Model, DataTypes } = require("sequelize");
 
-const sequelize = require("../config/connection");
+// const sequelize = require("../config/connection");
 
-class Artist extends model {}
+// class Artist extends model {}
 
-Artist.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    artist_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  },
-  {
-    sequelize,
-    freezeTableName: true,
-    underscored: true,
-    modelName: "artist",
-  }
-);
+// Artist.init(
+//   {
+//     id: {
+//       type: DataTypes.INTEGER,
+//       allowNull: false,
+//       primaryKey: true,
+//       autoIncrement: true,
+//     },
+//     artist_name: {
+//       type: DataTypes.STRING,
+//       allowNull: false,
+//     },
+//   },
+//   {
+//     sequelize,
+//     freezeTableName: true,
+//     underscored: true,
+//     modelName: "artist",
+//   }
+// );
 
-module.exports = Artist;
+// module.exports = Artist;

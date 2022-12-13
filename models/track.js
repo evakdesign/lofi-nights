@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 
 const sequelize = require("../config/connection");
+const Shows = require("./shows");
 
 class Track extends model {}
 
@@ -24,5 +25,5 @@ Track.init(
     modelName: "track",
   }
 );
-
+Track.hasMany(Shows);
 module.exports = Track;
