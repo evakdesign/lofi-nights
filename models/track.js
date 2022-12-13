@@ -3,7 +3,7 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 const Shows = require("./shows");
 
-class Track extends model {}
+class Track extends Model {}
 
 Track.init(
   {
