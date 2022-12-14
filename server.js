@@ -6,10 +6,13 @@ const session = require("express-session");
 const path = require("node:path");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./config/connection.js");
-const {Staff, Role} = require("./models");
+const {Staff, Role, Shows, Track} = require("./models");
 const routes = require("./controllers");
 const {handleAuth} = require("./controllers/middleware");
 const PORT = process.env.PORT || 3001;
+const sequelizeStore = new SequelizeStore({
+    db:sequelize
+}); 
 
 const app = express();
 app.use(express.json());
@@ -21,9 +24,7 @@ app.set("view engine", "handlebars");
 app.set("views", "./views");
 app.use(session({
     secret:process.env.SESSION_SECRET,
-    store:new SequelizeStore({
-        db:sequelize
-    }),
+    store:sequelizeStore,
     resave:false
 }))
 
@@ -42,8 +43,11 @@ app.get("/home",(req, res) => {
 });
 
 const runServer = async () => {
+    await sequelizeStore.sync();
     await Staff.sync();
     await Role.sync();
+    await Shows.sync();
+    await Track.sync();
     app.listen(PORT, () => {
         console.log("server is listening");
     })

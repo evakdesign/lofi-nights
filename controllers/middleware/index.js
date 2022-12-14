@@ -3,11 +3,13 @@ const handleAuth = (req, res, next) => {
         res.status(403).json({error: "not authenticated"})
         res.end()
         return;
-    }
-    if(!res.session.user){
-        res.status(403).json({error: "not authenticated"})
-        res.end()
-        return;
+    } 
+    else {
+        if(!req.session.user){
+            res.status(403).json({error: "not authenticated"})
+            res.end()
+            return;
+        }
     }
     next()    
 };

@@ -1,14 +1,18 @@
 const App = () => {
-    const [data,setData] = React.useState("initial state")
     //The app is setting state for holding authentication data and show data. The app is now in charge for maintaining that information.
     const [auth, setAuth] = React.useState(null)
     const [show, setShow] = React.useState(shows[0])
-    const getData = () => {
-        setData(Date.now());
-    }
-    const handleTalkBreak = () => {
-        alert("Talk Break")
-    }
+    
+    React.useEffect(()=>{
+        const checkAuth = async ()=>{
+            const AuthResponse = await fetch("/checkAuth")
+            const AuthData = await AuthResponse.json()
+            if(AuthData.user){
+                setAuth(AuthData.user)
+            }
+        } 
+        checkAuth()
+    },[])
     /* Here we are using the AuthProvider component which is defined in context/index.js
     The value prop passes these pieces of state into the context. We are passing the data object.
     */

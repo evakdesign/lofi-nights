@@ -30,7 +30,7 @@ const CurrentTrack = () => {
                     </div>
                     <div>
                         <div>
-                            <h3>{showContext.show.trackQueue[0].trackname}</h3>
+                            <h4>{showContext.show.trackQueue[0].trackname}</h4>
                             <h4>Artist: {showContext.show.trackQueue[0].artist}</h4>
                         </div>
                         <div>
