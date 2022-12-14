@@ -17,7 +17,7 @@ const Tracks = () => {
         })
     }
     return(
-        <div>
+        <div className = "trackscontainer">
             {/* <button onClick={handleAddTrack}>add track</button> */}
             <table>
                 <thead>

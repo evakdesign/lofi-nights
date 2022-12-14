@@ -1,17 +1,24 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const bcrypt = require("bcrypt");
+const { Staff } = require("../../models");
 
 router.post("/", async (req, res) => {
   try {
-    const dbUserData = await User.create({
+    const dbUserData = await Staff.create({
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      rolesID: 1,  
     });
+    // res.status(200).json(dbUserData);
 
     req.session.save(() => {
       req.session.loggedIn = true;
-
+      //Don't save password in session.
+      req.session.user = dbUserData;
+      //Don't send password to the client.
       res.status(200).json(dbUserData);
     });
   } catch (err) {
@@ -22,7 +29,7 @@ router.post("/", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const dbUserData = await User.findOne({
+    const dbUserData = await Staff.findOne({
       where: {
         email: req.body.email,
       },
@@ -35,18 +42,20 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    const validPassword = await dbUserData.checkPassword(req.body.password);
+    // const validPassword = await dbUserData.checkPassword(req.body.password);
 
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: "Incorrect email or password. Please try again." });
-      return;
-    }
+    // if (!validPassword) {
+    //   res
+    //     .status(400)
+    //     .json({ message: "Incorrect email or password. Please try again." });
+    //   return;
+    // }
+    
     req.session.save(() => {
+      req.session.user = dbUserData;
       req.session.loggedIn = true;
-
-      res.status.json({ user: dbUserData, message: "You are now logged in" });
+      
+      res.status(200).json({ user: dbUserData, message: "You are now logged in" });
     });
   } catch (err) {
     console.log(err);

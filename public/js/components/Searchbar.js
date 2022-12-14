@@ -11,6 +11,7 @@ const Searchbar = () => {
     }
     const handleSearchChange = (event) => {
         const filteredTracks = showContext.show.playlists[0].tracks.filter((track) => {
+            //If nothing is in the seachbar then return false.
             if(!event.target.value) {
                 return false;
             }
@@ -22,12 +23,13 @@ const Searchbar = () => {
             const labelLowercase = track.label ? track.label.toLowerCase():""; 
             return tracknameLowercase.includes(searchLowercase) || artistLowercase.includes(searchLowercase) || albumLowercase.includes(searchLowercase) || labelLowercase.includes(searchLowercase);
         }) 
-        setFoundTracks(filteredTracks)
+        //Whatever passes to filter we set as the found track state.
+        setFoundTracks(filteredTracks);
     }
     return(
         <div>
             <input onChange = {handleSearchChange} type ="text" name="search_field"/>
-            <div>
+            <div className = "trackscontainer">
                {renderFoundTracks()} 
             </div>
         </div>

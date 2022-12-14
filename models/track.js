@@ -3,7 +3,7 @@ const { Episode, Shows } = require(".");
 
 const sequelize = require("../config/connection");
 
-class Track extends model {}
+class Track extends Model {}
 
 Track.init(
   {
@@ -51,6 +51,6 @@ Track.init(
 );
 
 // Track.belongsTo(Song);
-Track.manyToMany(Shows);
+// Track.belongsToMany(Shows);
 
 module.exports = Track;

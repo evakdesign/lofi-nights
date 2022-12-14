@@ -19,6 +19,7 @@ const PlaylistEditor = () => {
         };
         console.log(newQueueTrack)
         showContext.setShow({...showContext.show, trackQueue:[...showContext.show.trackQueue, newQueueTrack]})
+        alert("Playlist Updated");
     }
     const renderEditor = () => {    
         if (authContext.auth) {

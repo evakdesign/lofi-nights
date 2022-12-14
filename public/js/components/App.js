@@ -15,15 +15,26 @@ const App = () => {
     return(
         <AuthProvider value={{auth, setAuth}}>
             <ShowProvider value={{show, setShow}}>
-                <div className = "test">
+                <div className = "panel">
                     <Header/>
-                    <Searchbar/>
-                    <button className = "button" onClick = {getData}>Get Songs</button>
-                    <p>{data}</p>
-                    <CurrentTrack/>
-                    <TalkBreak/>
-                    <PlaylistEditor/>
-                    <Tracks/>
+                    <h1 className="bannertitle">
+                        Nocturne
+                    </h1>    
+                    <div className = "searchbar">
+                        <Searchbar/>
+                    </div> 
+                    <div className = "currenttrack">  
+                        <CurrentTrack/>
+                    </div>
+                    <div className = "talkbreak">
+                        <TalkBreak/>
+                    </div>
+                    <div className = "playlisteditor">
+                        <PlaylistEditor/>
+                    </div>
+                    <div>
+                        <Tracks/>
+                    </div>    
                 </div>
             </ShowProvider>
         </AuthProvider>
