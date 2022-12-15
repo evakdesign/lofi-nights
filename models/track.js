@@ -17,6 +17,11 @@ Track.init(
     //   type: DataTypes.STRING,
     //   allowNull: false,
     // },
+    inQueue: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
     songName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -36,13 +41,18 @@ Track.init(
     timeStarted: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: Date.now(),
     },
     timeEnded: {
       type: DataTypes.STRING,
+      allowNull: true, 
+    },
+    trackSrc: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    trackImageSrc: {
+      type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: Date.now(),
-
     },
   },
   {
@@ -54,7 +64,7 @@ Track.init(
 );
 
 // Track.belongsTo(Song);
-Track.belongsToMany(Shows,{through:"ShowsTrack"});
-Shows.belongsToMany(Track,{through:"ShowsTrack"});
+// Track.belongsToMany(Shows,{through:"ShowsTrack"});
+// Shows.belongsToMany(Track,{through:"ShowsTrack"});
 
 module.exports = Track;

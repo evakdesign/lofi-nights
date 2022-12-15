@@ -14,7 +14,7 @@ const Track = (props) => {
     return(
         <tr>
             <td>
-                {props.show}
+                {props.showName}
             </td>
             <td>
                 {dateFormat(props.played)}
@@ -23,16 +23,16 @@ const Track = (props) => {
                 {props.ended && dateFormat(props.ended)}
             </td>
             <td>
-                {props.title}
+                {props.songName}
             </td>
             <td>
-                {props.album}
+                {props.albumName}
             </td>
             <td>
-                {props.artist}
+                {props.artistName}
             </td>
             <tr>
-                {props.label}
+                {props.labelName}
             </tr>
         </tr>
     )

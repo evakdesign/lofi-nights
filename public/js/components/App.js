@@ -1,7 +1,7 @@
 const App = () => {
     //The app is setting state for holding authentication data and show data. The app is now in charge for maintaining that information.
     const [auth, setAuth] = React.useState(null)
-    const [show, setShow] = React.useState(shows[0])
+    const [show, setShow] = React.useState({trackQueue:[], tracks:[]})
     
     React.useEffect(()=>{
         const checkAuth = async ()=>{
@@ -11,7 +11,20 @@ const App = () => {
                 setAuth(AuthData.user)
             }
         } 
+        const getShows = async () => {
+            const showsResponse = await fetch("/api/shows");
+            const showsData = await showsResponse.json();
+            showsData[0].trackQueue = showsData[0].tracks.filter((track)=>{
+                return track.inQueue
+            }) 
+            showsData[0].tracks = showsData[0].tracks.filter((track)=>{
+                return !track.inQueue
+            })
+            setShow(showsData[0])
+            console.log("shows", showsData);
+        }
         checkAuth()
+        getShows()
     },[])
     /* Here we are using the AuthProvider component which is defined in context/index.js
     The value prop passes these pieces of state into the context. We are passing the data object.

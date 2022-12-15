@@ -12,8 +12,9 @@ const Tracks = () => {
     //When the parent component changes its state, then the new prop will pass down to the child components.
     //When a child receives new props it renders in a new way.
     const renderTracks = () => {
-        return showContext.show.playlists[0].tracks.map((track, i) => {
-            return <Track {...track} show={showContext.show.show_name} title={track.trackname} />
+        console.log(showContext.show)
+        return showContext.show.tracks.map((track, i) => {
+            return <Track {...track} show={showContext.show.show_name} />
         })
     }
     return(

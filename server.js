@@ -44,10 +44,13 @@ app.get("/home",(req, res) => {
 
 const runServer = async () => {
     await sequelizeStore.sync();
-    await Staff.sync();
-    await Role.sync();
-    await Shows.sync();
-    await Track.sync();
+    // await Staff.sync();
+    // await Role.sync();
+    // await Shows.sync();
+    // await Track.sync();
+    Track.belongsToMany(Shows,{through:"ShowsTrack"});
+    Shows.belongsToMany(Track,{through:"ShowsTrack"});
+    await sequelize.sync();
     app.listen(PORT, () => {
         console.log("server is listening");
     })

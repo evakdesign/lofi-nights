@@ -17,4 +17,4 @@ const Track = require('./Track');
 
 
 
-module.exports = {  Episode, Role, Shows, Station, Staff, Track};
+module.exports = { Role, Shows, Staff, Track};

@@ -6,19 +6,28 @@ const PlaylistEditor = () => {
     const albumInputRef = React.useRef(null);
     const labelInputRef = React.useRef(null);
     const srcInputRef = React.useRef(null);
-    const handleEditorSubmit = (event) => {
+    const handleEditorSubmit = async (event) => {
         event.preventDefault();
         const newQueueTrack = {
-            trackname: titleInputRef.current.value,
-            artist: artistInputRef.current.value,
-            album: albumInputRef.current.value,
-            label: labelInputRef.current.value,
-            src: srcInputRef.current.value,
+            songName: titleInputRef.current.value,
+            artistName: artistInputRef.current.value,
+            albumName: albumInputRef.current.value,
+            labelName: labelInputRef.current.value,
+            trackSrc: srcInputRef.current.value,
             played: null,
-            ended: null
+            ended: null,
+            inQueue: true
         };
-        console.log(newQueueTrack)
-        showContext.setShow({...showContext.show, trackQueue:[...showContext.show.trackQueue, newQueueTrack]})
+        const newTrackResponse = await fetch("/api/shows/1/track/new", {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(newQueueTrack)
+        }) 
+        const newTrackData = await newTrackResponse.json()
+        console.log(newTrackData)
+        // showContext.setShow({...showContext.show, trackQueue:[...showContext.show.trackQueue, newQueueTrack]})
         alert("Playlist Updated");
     }
     const renderEditor = () => {    

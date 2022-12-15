@@ -1,6 +1,7 @@
 const { Model, DataTypes, DATE } = require('sequelize');
 const sequelize = require('../config/connection');
 
+
 class Shows extends Model {}
 
 Shows.init(

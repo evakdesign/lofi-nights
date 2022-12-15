@@ -10,12 +10,26 @@ const Header = () => {
             return null;
         }
     }
+    const handleLogout = async () => {
+        const logoutResponse = await fetch("/api/user/logout", {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        authContext.setAuth(null);
+    }
     const renderLogin = () => {
         if (authContext.auth){
             return(
-                <p className = "welcomelogin" >
+                <div>
+                    <p className = "welcomelogin" >
                     Welcome {authContext.auth.firstName}
-                </p>
+                    </p>
+                    <button className = "buttonlogin" onClick = {handleLogout}>
+                    Logout
+                    </button>  
+                </div>
             )
         } else {
             return(
