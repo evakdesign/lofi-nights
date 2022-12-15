@@ -12,28 +12,28 @@ const dateFormat = (date) => {
 } 
 const Track = (props) => {
     return(
-        <tr>
-            <td>
+        <div className="flexrow">
+            <p>
                 {props.showName}
-            </td>
-            <td>
+            </p>
+            <p>
                 {dateFormat(props.played)}
-            </td>
-            <td>
+            </p>
+            <p>
                 {props.ended && dateFormat(props.ended)}
-            </td>
-            <td>
+            </p>
+            <p>
                 {props.songName}
-            </td>
-            <td>
+            </p>
+            <p>
                 {props.albumName}
-            </td>
-            <td>
+            </p>
+            <p>
                 {props.artistName}
-            </td>
-            <tr>
+            </p>
+            <p>
                 {props.labelName}
-            </tr>
-        </tr>
+            </p>
+        </div>
     )
 }

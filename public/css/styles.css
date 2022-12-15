@@ -62,10 +62,16 @@ audio::-webkit-media-controls-panel{
     font-weight: 400;
 }
 
-.searchbar {
-    text-align: center;
+.flexrow{
+    display: flex;
+    width: 100%;
 }
-
+.flexrow * {
+    padding: 3px;
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+}
 .currenttrack {
     text-align: center;
 }
@@ -104,11 +110,11 @@ input {
 }
 
 .trackscontainer {
-    font-family: Helvetica, sans-serif;
     display:flex;
+    font-family: Helvetica, sans-serif;
     flex-direction: column;
+    justify-content: left;
     width: 100%;
-    align-items: center;
 }
 
 .currenttrackimage{
@@ -143,6 +149,12 @@ input {
   text-align: left;
 }
 
+@media screen and (max-width:375px){
+    table {
+        display:flex;
+        flex-direction: column;
+    } 
+}      
 
 
 

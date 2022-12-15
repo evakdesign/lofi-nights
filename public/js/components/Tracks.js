@@ -14,31 +14,31 @@ const Tracks = () => {
     const renderTracks = () => {
         console.log(showContext.show)
         return showContext.show.tracks.map((track, i) => {
-            return <Track {...track} show={showContext.show.show_name} />
+            return <Track {...track} showName={showContext.show.showName} />
         })
     }
     return(
         <div className = "trackscontainer">
             {/* <button onClick={handleAddTrack}>add track</button> */}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Show</th>
-                        <th>Played</th>
-                        <th>Ended</th>
-                        <th>Title</th>
-                        <th>Album</th>
-                        <th>Artist</th>
-                        <th>Label</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div>
+                <div>
+                    <div className = "flexrow">
+                        <p>Show</p>
+                        <p>Played</p>
+                        <p>Ended</p>
+                        <p>Title</p>
+                        <p>Album</p>
+                        <p>Artist</p>
+                        <p>Label</p>
+                    </div>
+                </div>
+                <div>
                     {/* <Track show="Test show one" played = "date" ended = "date" title = "one" album = "date" artist = "data" label = "date"/>
                     <Track show="Test show two" played = "two" ended = "three" title = "four" album = "five" artist = "data" label = "date"/> */}
                     {/*This function will be called everytime the component rerenders*/}
                     {renderTracks()}
-                </tbody>
-            </table>
+                </div>
+            </div>
         </div>
     )
 }
