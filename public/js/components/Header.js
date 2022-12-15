@@ -1,30 +1,41 @@
 const Header = () => {
-    const authContext = React.useContext(AuthContext)
+    const authContext = React.useContext(AuthContext);
+    const [showLogin, setShowLogin] = React.useState(false);
+    const renderLoginForm = () => {
+        if(showLogin && !authContext.auth) {
+            return (
+                <Login/>
+            )
+        } else {
+            return null;
+        }
+    }
     const renderLogin = () => {
         if (authContext.auth){
             return(
-                <p>
+                <p className = "welcomelogin" >
                     Welcome {authContext.auth.firstName}
                 </p>
             )
         } else {
             return(
-                <button className = "button" onClick = {handleLogin}>
+                <button className = "buttonlogin" onClick = {handleLogin}>
                     Login
                 </button>    
             )
         }
     }
     const handleLogin = () => {
-        authContext.setAuth(currentUser)
+        // authContext.setAuth(currentUser)
+        setShowLogin(!showLogin)
     }
     return(
-        <header className ="header">
-                <p>
-                    Nocturne
-                </p>
+        <header className="header">
+            <div className="headerlogin">
+                {renderLogin()}    
+            </div>
             <div>
-                {renderLogin()}
+                {renderLoginForm()}
             </div>
         </header>
     )

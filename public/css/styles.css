@@ -5,24 +5,142 @@
     font-weight: normal;
 }
 
-body{
+body {
+    width: 100vw;
+    box-sizing: border-box;
+    margin: 0;
+    min-height: 100vh;
+    max-width: 100vw;
     background-color: black;
+}
+#app{
+    display:flex;
+    justify-content: center;
+    width: 100vw;
+    padding: 0 10vw;
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 100vh;
+    margin: 0;
+    max-width: 100vw;
+    background-color: black;
+    background-image:
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
     color: white;
 }
 
+audio{
+    margin-top: 15px;
+}
 audio::-webkit-media-controls-panel{
     background-color: blueviolet;
 }
 
-.header {
-    font-family: 'Kolligio';
-    display: flex;
-    font-size: 64px;
-    justify-content: space-between;
+.panel {
+    text-align: center;
+    width: 100%;
 }
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    height:50px;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.bannertitle {
+    font-family: 'Kolligio';
+    font-size: 64px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.searchbar {
+    text-align: center;
+}
+
+.currenttrack {
+    text-align: center;
+}
+
+input {
+    width: 295px;
+}
+
+.loginformwrapper label {
+    width: 8ch;
+    display: inline-block;
+}
+
 .button {
     background-color: blueviolet;
     color: white;
+    margin-bottom: 5px;
+}
+
+.addtrack button {
+    background-color: blueviolet;
+    color: white;
+    margin-top: 5px;
+}
+
+.buttonlogin {
+    background-color: blueviolet;
+    color: white;
+    padding: 10px 15px;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+}
+.buttonlogin:hover{
+    background-color: rgb(170, 79, 255);
+    transform: scale(1.1);
+}
+
+.trackscontainer {
+    font-family: Helvetica, sans-serif;
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.currenttrackimage{
+    width:auto;
+    height:25vh;
+}
+
+.currenttrackimage img{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+}
+
+.currenttrackcontainer {
+    font-family: 'Helvetica';
+    font-size: 16px;;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 15px;
+}
+
+.loginformwrapper {
+    position:absolute;
+    top:50px;
+    right:0;
+    transform:translate(50%, 0);
+}
+
+.loginformwrapper form {
+  text-align: left;
 }
 
 

@@ -14,21 +14,21 @@ Shows.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    roleID: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    episode: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
+    // roleID: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    // },
+    // episode: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    // },
     timeStarted: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     timeEnded: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
   },
   {

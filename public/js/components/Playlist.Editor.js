@@ -19,6 +19,7 @@ const PlaylistEditor = () => {
         };
         console.log(newQueueTrack)
         showContext.setShow({...showContext.show, trackQueue:[...showContext.show.trackQueue, newQueueTrack]})
+        alert("Playlist Updated");
     }
     const renderEditor = () => {    
         if (authContext.auth) {
@@ -60,7 +61,7 @@ const PlaylistEditor = () => {
                         value = "https://ia802905.us.archive.org/17/items/100ClassicalMusicMasterpieces/1685%20Purcell%20%2C%20Trumpet%20Tune%20and%20Air.mp3" 
                         name = "playlist_src"/>
                     </div>
-                    <div>
+                    <div className = "addtrack">
                         <button>
                             Add Track
                         </button>
