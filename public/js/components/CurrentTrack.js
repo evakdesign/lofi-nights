@@ -1,14 +1,45 @@
+const defaultImage = "https://www.iconeasy.com/icon/png/Media/Vinyl%20Record%20Icons/Vinyl%20Violet%20512.png"
 const CurrentTrack = () => {
     const showContext = React.useContext(ShowContext);
     //local state
-    const [trackState, setTrackState] = React.useState({isplaying:false});
+    // const [trackState, setTrackState] = React.useState({isplaying:false});
     const trackRef = React.useRef(null);
+    
+    React.useEffect(()=>{
+        if(showContext.show.isplaying){
+            if(trackRef){
+                if(trackRef.current){
+                    trackRef.current.play();
+                }
+            }
+        } else {
+            if(trackRef){
+               if(trackRef.current){
+                    trackRef.current.pause();
+                }
+            }
+        }
+    },[showContext])
     //This function checks if there are tracks in the show context queue if there are play the audio if not then say no more tracks in playlist.
     const renderCurrentTrack = () => {
         if(showContext.show.trackQueue.length > 0) {
             return(
-                <audio ref = {trackRef} onPlaying = {handleCurrentTrackStart} onEnded = {handleCurrentTrackEnd} controls = {true} src= {showContext.show.trackQueue[0].src}>
-                </audio>)
+                <div className = "currenttrackcontainer">
+                    <div className = "currenttrackimage">
+                        <img src={showContext.show.trackQueue[0].image || defaultImage}/>
+                    </div>
+                    <div>
+                        <div>
+                            <h4>{showContext.show.trackQueue[0].trackname}</h4>
+                            <h4>Artist: {showContext.show.trackQueue[0].artist}</h4>
+                        </div>
+                        <div>
+                            <audio ref = {trackRef} onPlaying = {handleCurrentTrackStart} onEnded = {handleCurrentTrackEnd} controls = {true} src= {showContext.show.trackQueue[0].src}>
+                        </audio>
+                        </div>
+                    </div>
+                </div>
+                )
         } else {
             return(
                 <div>
@@ -20,7 +51,7 @@ const CurrentTrack = () => {
     };
     //If the track is playing in the local state then return
     const handleCurrentTrackStart = () => {
-        if (trackState.isplaying) {
+        if (showContext.show.isplaying) {
             return; 
         }
         //set the played property to the current time(datePlayed)
@@ -34,16 +65,16 @@ const CurrentTrack = () => {
          // console.log(showContext), displays the data structure;
          console.log({...showContext.show});
          //This updates the show with an updated version similar to line 32.
-         showContext.setShow({...showContext.show, trackQueue:[{...topQueueTrack, played: datePlayed}, ...showContext.show.trackQueue.slice(1)], playlists:[{...currentPlaylist, tracks:[startedTrack, ...currentPlaylist.tracks]}]})
-         setTrackState({isplaying: true})
+         showContext.setShow({...showContext.show, isplaying: true, trackQueue:[{...topQueueTrack, played: datePlayed}, ...showContext.show.trackQueue.slice(1)], playlists:[{...currentPlaylist, tracks:[startedTrack, ...currentPlaylist.tracks]}]})
+        //  setTrackState({isplaying: true})
         }
     const handleCurrentTrackEnd = () => {
        const currentPlaylist = showContext.show.playlists[0];
        const finishedTrack = {...showContext.show.trackQueue[0], ended:Date.now()}
         // console.log(showContext);
         console.log({...showContext.show});
-        showContext.setShow({...showContext.show, trackQueue:showContext.show.trackQueue.slice(1), playlists:[{...currentPlaylist, tracks:[finishedTrack, ...currentPlaylist.tracks.slice(1)]}]})
-        setTrackState({isplaying: false})
+        showContext.setShow({...showContext.show, isplaying:false, trackQueue:showContext.show.trackQueue.slice(1), playlists:[{...currentPlaylist, tracks:[finishedTrack, ...currentPlaylist.tracks.slice(1)]}]})
+        // setTrackState({isplaying: false})
     }
     return(
         <div>
