@@ -4,7 +4,7 @@ const Searchbar = () => {
     const renderFoundTracks = () => {
         return foundTracks.map((track) => {
             return(
-                <Track {...track} showName={showContext.show.showName}/>
+                <Track {...track} showName={showContext.show.name}/>
 
             );
         })

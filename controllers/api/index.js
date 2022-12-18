@@ -1,3 +1,4 @@
+//These routes are being exported for the app here.
 const router = require('express').Router();
 const userRoutes = require('./userroutes');
 
