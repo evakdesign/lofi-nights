@@ -113,8 +113,12 @@ input {
     display:flex;
     font-family: Helvetica, sans-serif;
     flex-direction: column;
-    justify-content: left;
+    justify-content: center;
     width: 100%;
+}
+
+.trackscontainer div p {
+    width: calc(100%/7);
 }
 
 .currenttrackimage{

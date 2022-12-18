@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-
+//This like all the models sets the shape of the data.
 class StaffMember extends Model {}
 
 StaffMember.init(

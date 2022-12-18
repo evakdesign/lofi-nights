@@ -1,9 +1,11 @@
+//This imports all the libraries needed.
 const dotenv = require("dotenv");
 dotenv.config()
 const express = require("express");
 const handlebars = require("express-handlebars");
 const session = require("express-session");
 const path = require("node:path");
+//Sequelize is being used to store the sessions.
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./config/connection.js");
 const {Shows, Track} = require("./models");

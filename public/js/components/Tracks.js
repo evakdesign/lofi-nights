@@ -14,7 +14,7 @@ const Tracks = () => {
     const renderTracks = () => {
         console.log(showContext.show)
         return showContext.show.tracks.map((track, i) => {
-            return <Track {...track} showName={showContext.show.showName} />
+            return <Track {...track} showName={showContext.show.name} />
         })
     }
     return(
