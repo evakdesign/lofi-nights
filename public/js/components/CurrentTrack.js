@@ -50,7 +50,7 @@ const CurrentTrack = () => {
         }
     };
     //If the track is playing in the local state then return
-    const handleCurrentTrackStart = () => {
+    const handleCurrentTrackStart = async () => {
         if (showContext.show.isplaying) {
             return; 
         }
@@ -62,16 +62,32 @@ const CurrentTrack = () => {
         const startedTrack = {...topQueueTrack, played:datePlayed}
          // console.log(showContext), displays the data structure;
          console.log({...showContext.show});
-         //This updates the show with an updated version similar to line 32.
-         showContext.setShow({...showContext.show, isplaying: true, trackQueue:[{...topQueueTrack, played: datePlayed}, ...showContext.show.trackQueue.slice(1)], tracks: [{...topQueueTrack, played: datePlayed, inQueue: false},...showContext.show.tracks]})
-        //  setTrackState({isplaying: true})
+         //This updates the show with an updated version similar to line 31.
+         showContext.setShow({...showContext.show, isplaying: true, trackQueue:[{...topQueueTrack, timeStarted: datePlayed}, ...showContext.show.trackQueue.slice(1)], tracks: [{...topQueueTrack, timeStarted: datePlayed, inQueue: false},...showContext.show.tracks]}) 
+        const updateTrackResponse = await fetch(`/api/shows/track/${topQueueTrack.id}`,{
+            method:"PUT",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({timeStarted: new Date(datePlayed)})
+        })
+        const updatedTrackData = await updateTrackResponse.json(); 
         }
-    const handleCurrentTrackEnd = () => {
-       const finishedTrack = {...showContext.show.trackQueue[0], ended:Date.now()}
+    const handleCurrentTrackEnd = async () => {
+       const datePlayed = Date.now();
+       const topQueueTrack = showContext.show.trackQueue[0];
+       const finishedTrack = {...showContext.show.trackQueue[0], timeEnded:Date.now()}
         // console.log(showContext);
         console.log({...showContext.show});
         showContext.setShow({...showContext.show, isplaying:false, trackQueue:showContext.show.trackQueue.slice(1), tracks:[finishedTrack, ...showContext.show.tracks.slice(1)]})
-        // setTrackState({isplaying: false})
+        const updateTrackResponse = await fetch(`/api/shows/track/${topQueueTrack.id}`,{
+            method:"PUT",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({timeEnded: new Date(datePlayed), inQueue:false})
+        })
+        const updatedTrackData = await updateTrackResponse.json(); 
     }
     return(
         <div>

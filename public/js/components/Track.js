@@ -17,10 +17,10 @@ const Track = (props) => {
                 {props.showName}
             </p>
             <p>
-                {dateFormat(props.played)}
+                {dateFormat(props.timeStarted)}
             </p>
             <p>
-                {props.ended && dateFormat(props.ended)}
+                {props.timeEnded && dateFormat(props.timeEnded)}
             </p>
             <p>
                 {props.songName}

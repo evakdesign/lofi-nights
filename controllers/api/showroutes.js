@@ -10,6 +10,21 @@ router.post("/track/new", async (req,res)=>{
     const newTrack = await Track.create(req.body);
     res.json(newTrack);
 });
+router.put("/track/:trackid", async (req,res) => {
+    try {
+        const updatedTrack = await Track.update(req.body, {
+            where: {
+                id: req.params.trackid
+            }
+        });
+        console.log(updatedTrack);
+        res.json({success:true});
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json({success:false});
+    }
+});
 // : this is a query parameter that takes in any variable.
 router.post("/:showid/track/new", async (req,res)=>{
     const showId = req.params.showid;
