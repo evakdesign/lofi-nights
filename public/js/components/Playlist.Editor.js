@@ -14,11 +14,14 @@ const PlaylistEditor = () => {
             albumName: albumInputRef.current.value,
             labelName: labelInputRef.current.value,
             trackSrc: srcInputRef.current.value,
-            played: null,
-            ended: null,
+            timeStarted: null,
+            timeEnded: null,
             inQueue: true
         };
-        const newTrackResponse = await fetch("/api/shows/1/track/new", {
+        showContext.setShow({...showContext.show, trackQueue:[...showContext.show.trackQueue, newQueueTrack]})
+        alert("Playlist Updated");
+        console.log(showContext.show)
+        const newTrackResponse = await fetch(`/api/shows/${showContext.show.id}/track/new`, {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
@@ -27,8 +30,6 @@ const PlaylistEditor = () => {
         }) 
         const newTrackData = await newTrackResponse.json()
         console.log(newTrackData)
-        // showContext.setShow({...showContext.show, trackQueue:[...showContext.show.trackQueue, newQueueTrack]})
-        alert("Playlist Updated");
     }
     const renderEditor = () => {    
         if (authContext.auth) {
