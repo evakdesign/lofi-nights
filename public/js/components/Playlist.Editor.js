@@ -68,7 +68,6 @@ const PlaylistEditor = () => {
                         ref = {srcInputRef}
                         type = "text" 
                         placeholder = "src"
-                        value = "https://ia802905.us.archive.org/17/items/100ClassicalMusicMasterpieces/1685%20Purcell%20%2C%20Trumpet%20Tune%20and%20Air.mp3" 
                         name = "playlist_src"/>
                     </div>
                     <div className = "addtrack">
